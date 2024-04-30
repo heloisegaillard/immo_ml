@@ -4,6 +4,11 @@ import joblib
 import preprocessing
 from sklearn.metrics import mean_squared_error, r2_score
 import numpy as np
+import matplotlib.pyplot as plt
+# Ajouter du CSS personnalisé pour créer un dégradé de couleur en arrière-plan
+
+st.image("assets/logo.png", width=100)
+# Afficher le logo dans l'en-tête
 
 
 # Chargement du modèle
@@ -74,6 +79,8 @@ if uploaded_file is not None:
     # Calculer les métriques
     y_true = preprocessed_data['median_house_value']  # Utiliser la colonne 'median_house_value' des données prétraitées
     rmse, r2 = calculate_metrics(y_true, predictions)
+
+    preprocessed_data.to_csv("donnees_avec_predictions.csv", index=False)
 
     # Afficher les résultats
     st.write("RMSE:", rmse)
